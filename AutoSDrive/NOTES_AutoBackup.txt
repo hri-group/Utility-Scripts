@@ -1,0 +1,48 @@
+# Written by:	Brandon Johns
+# Last edited:	2021-09-18
+# Purpose:	Backup to S: Drive
+
+### Script Notes ###
+Using destination path structure: "<destination>/<date-time>/<idx of source in array>_<leaf dir from source>"
+
+### Git Notes ###
+Intended use
+	Create Repo on S Drive through Github Desktop
+	Conifgure to acept pushes
+	Clone S Drive Copy onto shared computer
+		Repo Hierarchy: GitHub Repo -> S Drive Repo -> Shared Computer Repo
+		Intent: The S Drive Repo can be pushed to without credentials
+	Use this script on shared computer to push to S Drive
+	Push form shared computer to GitHub through Github Desktop
+
+Configure repo to accept pushes (safe - should reject if pending changes on branch being pushed to)
+	cd <repo to push to>
+	git config receive.denyCurrentBranch updateInstead
+
+Configure to not keep old merge tool data
+	git config --global mergetool.keepBackup false
+
+Local git repo from other local git repo
+	git clone --no-local --no-hardlinks <Source> <Destination (will contain the .git folder)>
+	git clone --no-local --no-hardlinks S:\Git\ViconDS C:\Users\hri\Documents\Brandon\Git\ViconDS-local
+
+
+CLI Push
+	git -C <push from> push
+	git -C C:\Users\hri\Documents\Brandon\Git\ViconDS-local push
+
+Commiting
+	git add .
+	git commit .
+
+Merge conflicts
+	Troubleshoot
+		git status
+	Run in order
+		git pull
+		git mergetool
+		git commit
+		git push
+
+
+
