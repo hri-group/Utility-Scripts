@@ -1,6 +1,6 @@
 # Written by:	Brandon Johns
-# Last edited:	2021-09-18
-# Purpose:	Pull new data from S: Drive to Amarantha
+# Last edited:	2021-09-22
+# Purpose:	Pull new data from S Drive to Amarantha
 
 ### Notes ###
 #   See main notes file
@@ -12,9 +12,9 @@
 $whoamiOutput = "amarantha\brand"
 $hostnameOutPut = "Amarantha"
 
-# Backup destination: root of mapping and path from mapped root to backup dir
-$ShareRoot = "\\ad.monash.edu\shared\RoMI-Lab\Construction-Robots"
-$destination = "S:\Backups\Amarantha"
+# Network drive
+$shareUser = "monash\bdjoh3"
+$shareRoot = "\\ad.monash.edu\shared\RoMI-Lab\Construction-Robots"
 
 # Locations of Git repos to update
 $gitList = @(
@@ -35,13 +35,13 @@ if (((whoami) -ne $whoamiOutput) -or ((hostname) -ne $hostnameOutPut))
 
 # Connect network drive (if not already)
 $Flag_SDriveConnectedAtStart = $true
-if (-not (Test-Path $ShareRoot))
+if (-not (Test-Path $shareRoot))
 {
     $Flag_SDriveConnectedAtStart = $false
 
     # Connect network drive
-    $cred = Get-Credential -Credential monash\bdjoh3
-    New-PSDrive -Name "S" -PSProvider "FileSystem" -Root $ShareRoot -Credential $cred -Persist
+    $cred = Get-Credential -Credential $shareUser
+    New-PSDrive -Name "S" -PSProvider "FileSystem" -Root $shareRoot -Credential $cred -Persist
 }
 
 # Pull each git repo
@@ -80,4 +80,6 @@ for ($idx = 0; $idx -lt $gitList.count; $idx++)
 if(-not $Flag_SDriveConnectedAtStart) { Remove-PSDrive S }
 
 echo "BJ: Finished"
+pause
+
 

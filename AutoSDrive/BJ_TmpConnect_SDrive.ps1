@@ -1,36 +1,58 @@
 # Written by:	Brandon Johns
-# Last edited:	2021-08-26
+# Last edited:	2021-09-22
 # Purpose: Connect to share, then disconnect on finish
+
+### Notes ###
+#   This script is computer independent
 
 ################################################################
 # Script input
 ################################
-# Backup settings
-$open_dir = "S:\windows\AutoBackup\Vicon"
+# Root of mapping and path from mapped root dir to open (mapped root = 'S')
+$shareUser = "monash\bdjoh3"
+$shareRoot = "\\ad.monash.edu\shared\RoMI-Lab\Construction-Robots"
+$OpenToPath = "S:\windows\AutoBackup\Vicon"
 
 ################################################################
 # Automated
 ################################
-# Only run on shared computers
-if ((whoami) -eq "monash\bdjoh3")
+# Connect network drive (if not already)
+$Flag_SDriveConnectedAtStart = $true
+if (-not (Test-Path $shareRoot))
 {
-    echo "Error: Don't run on this computer"
-    pause
-    throw "Should already be connected to S Drive"
+    $Flag_SDriveConnectedAtStart = $false
+
+    # Connect network drive
+    $cred = Get-Credential -Credential $shareUser
+    New-PSDrive -Name "S" -PSProvider "FileSystem" -Root $shareRoot -Credential $cred -Persist
 }
 
-# Connect network drive
-$cred = Get-Credential -Credential monash\bdjoh3
-New-PSDrive -Name "S" -PSProvider "FileSystem" -Root "\\ad.monash.edu\shared\RoMI-Lab\Construction-Robots" -Credential $cred -Persist
+# Test destination exists
+if (-not (Test-Path $OpenToPath))
+{
+    echo ("Error: Destination does not exist")
+
+    # Fallback to mount root
+    $OpenToPath = $shareRoot
+}
 
 # Open windows explorer to folder
-start $open_dir
+start $OpenToPath
 
-# Wait
-pause
+# Only need to wait if terminating the connection at end
+if(-not $Flag_SDriveConnectedAtStart) {
+    # Wait for user input
+    echo ("Press enter to terminate connection")
+    pause
 
-# Disconnect network drive
-Remove-PSDrive S
+    # Disconnect network drive if it was not originally connected
+    Remove-PSDrive S
+}
+else
+{
+    echo ("Connection left open")
+}
+
 
 echo "BJ_Finished"
 

@@ -1,5 +1,5 @@
 # Written by:	Brandon Johns
-# Last edited:	2021-09-18
+# Last edited:	2021-09-22
 # Purpose:	Backup Amarantha to S: Drive
 
 ### Notes ###
@@ -12,8 +12,9 @@
 $whoamiOutput = "amarantha\brand"
 $hostnameOutPut = "Amarantha"
 
-# Backup destination: root of mapping and path from mapped root to backup dir
-$ShareRoot = "\\ad.monash.edu\shared\RoMI-Lab\Construction-Robots"
+# Backup destination: root of mapping and path from mapped root to backup dir (mapped root = 'S')
+$shareUser = "monash\bdjoh3"
+$shareRoot = "\\ad.monash.edu\shared\RoMI-Lab\Construction-Robots"
 $destination = "S:\Backups\Amarantha"
 
 # Locations to backup
@@ -39,13 +40,13 @@ if (((whoami) -ne $whoamiOutput) -or ((hostname) -ne $hostnameOutPut))
 
 # Connect network drive (if not already)
 $Flag_SDriveConnectedAtStart = $true
-if (-not (Test-Path $ShareRoot))
+if (-not (Test-Path $shareRoot))
 {
     $Flag_SDriveConnectedAtStart = $false
 
     # Connect network drive
-    $cred = Get-Credential -Credential monash\bdjoh3
-    New-PSDrive -Name "S" -PSProvider "FileSystem" -Root $ShareRoot -Credential $cred -Persist
+    $cred = Get-Credential -Credential $shareUser
+    New-PSDrive -Name "S" -PSProvider "FileSystem" -Root $shareRoot -Credential $cred -Persist
 }
 
 # Test destination exists
