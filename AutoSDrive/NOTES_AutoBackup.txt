@@ -8,11 +8,11 @@ Using destination path structure: "<destination>/<date-time>/<idx of source in a
 ### Git Notes ###
 Intended use
 	Create Repo on S Drive through Github Desktop
-	Conifgure to acept pushes
+	Configure to accept pushes
 	Clone S Drive Copy onto shared computer
 		Repo Hierarchy: GitHub Repo -> S Drive Repo -> Shared Computer Repo
 		Intent: The S Drive Repo can be pushed to without credentials
-	Use this script on shared computer to push to S Drive
+	Use AutoBackup script on shared computer to push to S Drive
 	Push form shared computer to GitHub through Github Desktop
 
 Configure repo to accept pushes (safe - should reject if pending changes on branch being pushed to)
