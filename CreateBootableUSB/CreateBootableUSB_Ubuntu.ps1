@@ -19,6 +19,7 @@ $ISOFile = "C:\Users\Brand\Downloads\ubuntu-18.04.4-desktop-amd64.iso"
 $USBFName = "SanDisk Ultra"
 # $USBFName = "Generic Flash Disk"
 
+$ErrorActionPreference = "Inquire"
 $USBDrive = Get-Disk | Where FriendlyName -eq $USBFName
 $USBDrive | Clear-Disk -RemoveData -Confirm:$true -PassThru
 $USBDrive | Set-Disk -PartitionStyle MBR

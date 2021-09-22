@@ -75,6 +75,9 @@ $USBLabel = UBUNTU
 $USBFName = "SanDisk Ultra"
 # $USBFName = "Generic Flash Disk"
 
+# Setting: Pause execution on non-terminating errors
+$ErrorActionPreference = "Inquire"
+
 # Get the right USB Drive
 $USBDrive = Get-Disk | Where FriendlyName -eq $USBFName
 
