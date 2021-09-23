@@ -51,11 +51,20 @@ then
 fi
 
 # Test destination exists
-if [[ ! -d $destination ]]
-then
-    echo "Error: Destination does not exist"
-    exit 1
-fi
+# Wait a little for the drive to connect
+waitTime=0
+while [[ ! -d $destination ]]
+do
+    echo "(Waiting to connect)"
+    sleep 1
+    waitTime=$(( $waitTime + 1 ))
+
+    if [[ $waitTime -gt 5 ]]
+    then
+        echo "Error: Destination does not exist"
+        exit 1
+    fi
+done
 
 # Create subdir for this backup instance
 #   Name by date-time of backup
@@ -84,9 +93,8 @@ for (( idx=0; idx<${#sourceList[@]}; idx++ ))
     destination2="$destination1/$idx""_$sourceLeaf"
     
     # Backup
-    echo "$source/"
-    echo $destination2
-    rsync -r "$source/" $destination2
+    echo "Copying $source/"
+    rsync -r --info=progress2 "$source/" $destination2
 }
 
 # Push git repos
