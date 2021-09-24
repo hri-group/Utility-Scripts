@@ -26,7 +26,7 @@ $sourceList = @(
 
 # Locations of Git repos to push
 $gitList = @(
-    "C:\Users\hri\Documents\Brandon\Git\ViconDS-local"
+    "C:\Users\hri\Documents\Brandon\CraneExp"
 )
 
 ################################################################

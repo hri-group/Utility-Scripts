@@ -24,7 +24,7 @@ $sourceList = @(
 
 # Locations of Git repos to push
 $gitList = @(
-    "C:\Users\Brand\sandbox\test\vds"
+    
 )
 
 ################################################################

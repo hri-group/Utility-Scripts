@@ -2,10 +2,6 @@
 # Last edited:	2021-09-22
 # Purpose:	Pull new data from S Drive to UR5 Computer
 
-##################
-# NOT FULLY TESTED
-##################
-
 ### Notes ###
 #   See main notes file
 
@@ -22,7 +18,8 @@ destination="/run/user/1000/gvfs/smb-share:server=ad.monash.edu,share=shared"
 
 # Locations of Git repos to push
 declare -a gitList=(
-    "$HOME/brandon_ws/gittest"
+    "$HOME/brandon_ws/CraneExp"
+    "$HOME/brandon_ws/Matlab-CraneSim"
 )
 
 ################################################################

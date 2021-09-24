@@ -2,10 +2,6 @@
 # Last edited:	2021-09-21
 # Purpose:	Backup UR5 Computer to S: Drive
 
-##################
-# NOT FULLY TESTED
-##################
-
 ### Notes ###
 #   See main notes file
 
@@ -29,7 +25,7 @@ declare -a sourceList=(
 
 # Locations of Git repos to push
 declare -a gitList=(
-
+    "$HOME/brandon_ws/CraneExp"
 )
 
 ################################################################

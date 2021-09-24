@@ -15,7 +15,7 @@ $hostnameOutPut = "MU00196772"
 # Backup destination: root of mapping and path from mapped root to backup dir (mapped root = 'S')
 $shareUser = "monash\bdjoh3"
 $shareRoot = "\\ad.monash.edu\shared"
-$destination = "S:\RoMI-Lab\Construction-Robots\Backups\GDrive"
+$destination = "S:\RoMI-Lab\Construction-Robots\Backups\Mu"
 
 # Locations to backup
 $sourceList = @(
