@@ -9,8 +9,8 @@
 # Script input
 ################################
 # Output of "whoami" and "hostname", as run on computer to backup (Prevent running on wrong machine)
-$whoamiOutput = "amarantha\brand"
-$hostnameOutPut = "Amarantha"
+$whoamiOutput = "mu00042824\hri"
+$hostnameOutPut = "mu00042824"
 
 # Network drive
 $shareUser = "monash\bdjoh3"

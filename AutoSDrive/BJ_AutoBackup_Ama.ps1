@@ -19,7 +19,8 @@ $destination = "S:\Backups\Amarantha"
 
 # Locations to backup
 $sourceList = @(
-    "C:\Users\Brand\sandbox\test"
+    #"C:\Users\Brand\Documents\SolidWorks" # Takes 17 min
+
 )
 
 # Locations of Git repos to push
