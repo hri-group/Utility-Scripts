@@ -16,10 +16,12 @@ hostnameOutPut="acrv-All-Series"
 shareRoot="//ad.monash.edu/shared"
 destination="/run/user/1000/gvfs/smb-share:server=ad.monash.edu,share=shared"
 
-# Locations of Git repos to push
+# Locations of Git repos to pull
 declare -a gitList=(
     "$HOME/brandon_ws/CraneExp"
-    "$HOME/brandon_ws/Matlab-CraneSim"
+    "$HOME/brandon_ws/git/Matlab-CraneSim"
+    "$HOME/brandon_ws/git/HRI-GettingStartedNotes"
+    "$HOME/brandon_ws/git/Utility-Scripts"
 )
 
 ################################################################

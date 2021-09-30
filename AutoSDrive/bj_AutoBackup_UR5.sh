@@ -18,14 +18,15 @@ destination="/run/user/1000/gvfs/smb-share:server=ad.monash.edu,share=shared/RoM
 
 # Locations to backup
 declare -a sourceList=(
-    "$HOME/brandon_ws/scripts"
-    "$HOME/brandon_ws/catkin/src/bj_ur5_gripper"
-    "$HOME/brandon_ws/pure/craneVer1/src"
+    "$HOME/brandon_ws/CraneExp/pure"
 )
 
 # Locations of Git repos to push
 declare -a gitList=(
     "$HOME/brandon_ws/CraneExp"
+    "$HOME/brandon_ws/git/Matlab-CraneSim"
+    "$HOME/brandon_ws/git/HRI-GettingStartedNotes"
+    "$HOME/brandon_ws/git/Utility-Scripts"
 )
 
 ################################################################
