@@ -11,7 +11,8 @@
 # Root of mapping and path from mapped root dir to open (mapped root = 'S')
 $shareUser = "monash\bdjoh3"
 $shareRoot = "\\ad.monash.edu\shared\RoMI-Lab\Construction-Robots"
-$OpenToPath = "S:\windows\AutoBackup\Vicon"
+$OpenToPath = "S:"
+
 
 ################################################################
 # Automated

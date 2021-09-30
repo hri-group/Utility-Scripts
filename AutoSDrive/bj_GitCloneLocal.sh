@@ -1,9 +1,14 @@
 # Written by:	Brandon Johns
-# Last edited:	2021-09-22
+# Last edited:	2021-09-30
 # Purpose:	Clone git repo from S Drive
 
 ### Notes ###
 #   See main notes file
+
+# Or run from the orign repo
+# git config receive.denyCurrentBranch updateInstead
+# git --global mergetool.keepBackup false
+
 
 # ./bj_GitCloneLocal.sh "/run/user/1000/gvfs/smb-share:server=ad.monash.edu,share=shared/RoMI-Lab/Construction-Robots/Git/CraneExp" "$HOME/brandon_ws"
 # ./bj_GitCloneLocal.sh "/run/user/1000/gvfs/smb-share:server=ad.monash.edu,share=shared/RoMI-Lab/Construction-Robots/Git/HRI-GettingStartedNotes" "$HOME/brandon_ws/git"
