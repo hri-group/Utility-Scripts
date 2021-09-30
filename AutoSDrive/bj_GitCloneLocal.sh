@@ -5,15 +5,16 @@
 ### Notes ###
 #   See main notes file
 
-# Or run from the orign repo
-# git config receive.denyCurrentBranch updateInstead
-# git --global mergetool.keepBackup false
+# If setting fail to change, manually run from the orign repo (tested - works through powershell)
+#   git config receive.denyCurrentBranch updateInstead
+#   git --global mergetool.keepBackup false
 
-
-# ./bj_GitCloneLocal.sh "/run/user/1000/gvfs/smb-share:server=ad.monash.edu,share=shared/RoMI-Lab/Construction-Robots/Git/CraneExp" "$HOME/brandon_ws"
-# ./bj_GitCloneLocal.sh "/run/user/1000/gvfs/smb-share:server=ad.monash.edu,share=shared/RoMI-Lab/Construction-Robots/Git/HRI-GettingStartedNotes" "$HOME/brandon_ws/git"
-# ./bj_GitCloneLocal.sh "/run/user/1000/gvfs/smb-share:server=ad.monash.edu,share=shared/RoMI-Lab/Construction-Robots/Git/Matlab-CraneSim" "$HOME/brandon_ws/git"
-# ./bj_GitCloneLocal.sh "/run/user/1000/gvfs/smb-share:server=ad.monash.edu,share=shared/RoMI-Lab/Construction-Robots/Git/Utility-Scripts" "$HOME/brandon_ws/git"
+# Sample use:
+#   ShareRoot="/run/user/1000/gvfs/smb-share:server=ad.monash.edu,share=shared/RoMI-Lab/Construction-Robots"
+#   ./bj_GitCloneLocal.sh "$ShareRoot/Git/CraneExp" "$HOME/brandon_ws"
+#   ./bj_GitCloneLocal.sh "$ShareRoot/Git/HRI-GettingStartedNotes" "$HOME/brandon_ws/git"
+#   ./bj_GitCloneLocal.sh "$ShareRoot/Git/Matlab-CraneSim" "$HOME/brandon_ws/git"
+#   ./bj_GitCloneLocal.sh "$ShareRoot/Git/Utility-Scripts" "$HOME/brandon_ws/git"
 
 ################################################################
 # Script input
