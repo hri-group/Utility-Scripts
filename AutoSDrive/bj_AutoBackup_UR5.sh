@@ -19,6 +19,13 @@ destination="/run/user/1000/gvfs/smb-share:server=ad.monash.edu,share=shared/RoM
 # Locations to backup
 declare -a sourceList=(
     "$HOME/brandon_ws/CraneExp/pure"
+    "$HOME/brandon_ws/CraneExp/lib_ubuntu"
+)
+
+# Individual files to backup
+declare -a sourceListFiles=(
+    "$HOME/.bashrc"
+    "$HOME/brandon_ws/CraneExp/bashrc_append.sh"
 )
 
 # Locations of Git repos to push
@@ -92,6 +99,18 @@ for (( idx=0; idx<${#sourceList[@]}; idx++ ))
     # Backup
     echo "Copying $source/"
     rsync -r --info=progress2 "$source/" $destination2
+}
+
+# Backup individually specified files
+destinationFiles="$destination1/IndividualFiles"
+mkdir $destinationFiles
+for (( idx=0; idx<${#sourceListFiles[@]}; idx++ ))
+{
+    source=${sourceListFiles[$idx]}
+
+    # Backup
+    echo "Copying $source/"
+    cp "$source" "$destinationFiles"
 }
 
 # Push git repos
