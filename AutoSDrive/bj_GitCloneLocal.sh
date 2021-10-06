@@ -40,5 +40,9 @@ newGitRepo="$destination/$originLeaf"
 # Create a local git repo from another local git repo
 git clone --no-local --no-hardlinks $originGitRepo $newGitRepo
 
+# Set user and email in new repo
+git -C $newGitRepo config user.name "brandon"
+git -C $newGitRepo config user.email "test@test"
+
 echo "BJ: Finished"
 
