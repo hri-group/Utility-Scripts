@@ -6,6 +6,16 @@
 #   See main notes file
 
 ################################################################
+# CLI Input
+################################
+Flag_GitOnly="false"
+if [ "$1" = "git" ]
+then
+    echo "BJ: Git Push only"
+    Flag_GitOnly="true"
+fi
+
+################################################################
 # Script input
 ################################
 # Output of "whoami" and "hostname", as run on computer to backup (Prevent running on wrong machine)
@@ -73,53 +83,59 @@ do
     fi
 done
 
-# Create subdir for this backup instance
-#   Name by date-time of backup
-date1=$(date +"%Y-%m-%d_%H_%M")
-destination1="$destination/$date1"
-mkdir $destination1
+# Don't backup if doing git push only
+if [ ! "$Flag_GitOnly" = "true" ]
+then
+    # Create subdir for this backup instance
+    #   Name by date-time of backup
+    date1=$(date +"%Y-%m-%d_%H_%M")
+    destination1="$destination/$date1"
+    mkdir $destination1
 
-# Backup this script
-#PathThisScript=$BASH_SOURCE
-PathThisScript=$(realpath $0)
-cp $PathThisScript $destination1
+    # Backup this script
+    #PathThisScript=$BASH_SOURCE
+    PathThisScript=$(realpath $0)
+    cp $PathThisScript $destination1
 
-# Log file
-logFile="$destination1/BackupLog.txt"
-logText_ExitCodeRobocopy="VALUE NOT SET"
-logText_ExitCodeGitPush="VALUE NOT SET"
+    # Log file
+    logFile="$destination1/BackupLog.txt"
+    logText_ExitCodeRobocopy="VALUE NOT SET"
+    logText_ExitCodeGitPush="VALUE NOT SET"
 
-# Backup each source
-for (( idx=0; idx<${#sourceList[@]}; idx++ ))
-{
-    source=${sourceList[$idx]}
-    sourceLeaf=$(basename $source)
+    # Backup each source
+    for (( idx=0; idx<${#sourceList[@]}; idx++ ))
+    {
+        source=${sourceList[$idx]}
+        sourceLeaf=$(basename $source)
 
-    # Create subdir for source
-    #   Name by <idx of source>_<leaf of source dir>
-    destination2="$destination1/$idx""_$sourceLeaf"
-    
-    # Backup
-    echo "Copying $source/"
-    rsync -r --info=progress2 "$source/" $destination2
-}
+        # Create subdir for source
+        #   Name by <idx of source>_<leaf of source dir>
+        destination2="$destination1/$idx""_$sourceLeaf"
+        
+        # Backup
+        echo "BJ: Copying $source/"
+        rsync -r --info=progress2 "$source/" $destination2
+    }
 
-# Backup individually specified files
-destinationFiles="$destination1/IndividualFiles"
-mkdir $destinationFiles
-for (( idx=0; idx<${#sourceListFiles[@]}; idx++ ))
-{
-    source=${sourceListFiles[$idx]}
+    # Backup individually specified files
+    destinationFiles="$destination1/IndividualFiles"
+    mkdir $destinationFiles
+    for (( idx=0; idx<${#sourceListFiles[@]}; idx++ ))
+    {
+        source=${sourceListFiles[$idx]}
 
-    # Backup
-    echo "Copying $source/"
-    cp "$source" "$destinationFiles"
-}
+        # Backup
+        echo "BJ: Copying $source/"
+        cp "$source" "$destinationFiles"
+    }
+fi
 
 # Push git repos
 for (( idx=0; idx<${#gitList[@]}; idx++ ))
 {
     gitRepo=${gitList[$idx]}
+
+    echo "BJ: Git Pushing $gitRepo"
 
     # Option "-C <path>" = Run as if git was started in <path> instead of the current working directory
     git -C $gitRepo push
