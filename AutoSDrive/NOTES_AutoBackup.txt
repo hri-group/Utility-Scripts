@@ -5,6 +5,12 @@
 ### Script Notes ###
 Using destination path structure: "<destination>/<date-time>/<idx of source in array>_<leaf dir from source>"
 
+### Copy notes ###
+Large number of files
+	Copying large number of files to the share is super slow (order of magnitude hours)
+	=> compress into zip first
+		zip -0 -r bjNameOfZip.zip bjDirToZip
+
 ### Git Notes ###
 Intended use
 	Create Repo on S Drive through Github Desktop

@@ -8,11 +8,20 @@
 ################################################################
 # CLI Input
 ################################
+# DEFALUT (no flags): Push git repos, copy dirs, copy individual files
+# git: Only push git repos
+# full: Push git repos, copy dirs, zip and copy dirs copy individual files
+
 Flag_GitOnly="false"
+Flag_Full="false"
 if [ "$1" = "git" ]
 then
     echo "BJ: Git Push only"
     Flag_GitOnly="true"
+elif [ "$1" = "full" ]
+then
+    echo "BJ: Full backup"
+    Flag_Full="true"
 fi
 
 ################################################################
@@ -32,13 +41,17 @@ declare -a sourceList=(
     "$HOME/brandon_ws/CraneExp/pure/src"
     "$HOME/brandon_ws/CraneExp/pure/bin"
     "$HOME/brandon_ws/CraneExp/catkin/src/bj_ur5_gripper"
-    "$HOME/brandon_ws/CraneExp/lib_ubuntu"
+)
+
+# Locations to zip and backup
+zipTmpDir="$HOME/brandon_ws"
+declare -a sourceListZip=(
+    "$HOME/brandon_ws/CraneExp"
 )
 
 # Individual files to backup
 declare -a sourceListFiles=(
     "$HOME/.bashrc"
-    "$HOME/brandon_ws/CraneExp/bashrc_append.sh"
 )
 
 # Locations of Git repos to push
@@ -116,6 +129,38 @@ then
         echo "BJ: Copying $source/"
         rsync -r --info=progress2 "$source/" $destination2
     }
+
+    if [ "$Flag_Full" = "true" ]
+    then
+        # Backup each source (with zipping)
+        for (( idx=0; idx<${#sourceListZip[@]}; idx++ ))
+        {
+            source=${sourceListZip[$idx]}
+            sourceLeaf=$(basename $source)
+
+            # Create name for zip
+            #   Name by <idx of source>_<leaf of source dir>
+            zipName="$idx""_$sourceLeaf"".zip"
+
+            tmpZipDir="$HOME/brandon_ws"
+            tmpZipPath="$tmpZipDir/$zipName"
+
+            # Zip locally
+            #   Zip can copy a remote location, but super slow => send local and then use rsync to move
+            echo "BJ: Ziping and Copying $source/"
+            zip -0 -r --quiet $tmpZipPath "$source/"
+
+            # $? returns the exit code of the previous command on standard out
+            EC=$?
+            if [ $EC != 0 ]
+            then
+                echo "BJ: ERROR in execution of zip command"
+            fi
+
+            # Move zip to backup location
+            rsync --remove-source-files --info=progress2 $tmpZipPath "$destination1/"
+        }
+    fi
 
     # Backup individually specified files
     destinationFiles="$destination1/IndividualFiles"
