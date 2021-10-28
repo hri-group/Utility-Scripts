@@ -39,7 +39,6 @@ destination="/run/user/1000/gvfs/smb-share:server=ad.monash.edu,share=shared/RoM
 declare -a sourceList=(
     "$HOME/brandon_ws/CraneExp/scripts"
     "$HOME/brandon_ws/CraneExp/pure/src"
-    "$HOME/brandon_ws/CraneExp/pure/bin"
     "$HOME/brandon_ws/CraneExp/catkin/src/bj_ur5_gripper"
 )
 
