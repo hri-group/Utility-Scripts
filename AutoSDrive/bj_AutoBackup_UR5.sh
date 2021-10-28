@@ -102,6 +102,10 @@ then
     #   Name by date-time of backup
     date1=$(date +"%Y-%m-%d_%H_%M")
     destination1="$destination/$date1"
+    if [ "$Flag_Full" = "true" ]
+    then
+        destination1="$destination1""_FULL"
+    fi
     mkdir $destination1
 
     # Backup this script
