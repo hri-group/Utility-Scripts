@@ -11,6 +11,7 @@
 
 # Sample use:
 #   $ShareRoot="S:/RoMI-Lab/Construction-Robots"
+#   $ShareRoot="S:"
 #   ./bj_GitCloneLocal.ps1 "$ShareRoot/Git/CraneExp" "$HOME/Documents/Brandon/git"
 #   ./bj_GitCloneLocal.ps1 "$ShareRoot/Git/HRI-GettingStartedNotes" "$HOME/Documents/Brandon/git"
 #   ./bj_GitCloneLocal.ps1 "$ShareRoot/Git/Matlab-CraneSim" "$HOME/Documents/Brandon/git"
@@ -30,6 +31,14 @@ param (
 ################################################################
 # Automated
 ################################
+# Test originGitRepo exists
+if (-not (Test-Path $originGitRepo))
+{
+    echo ("Error: Destination does not exist")
+    pause
+    throw "Destination does not exist"
+}
+
 # Give same name to new repo
 $originLeaf = Split-Path $originGitRepo -Leaf
 $newGitRepo = Join-Path $destination $originLeaf
@@ -37,7 +46,7 @@ $newGitRepo = Join-Path $destination $originLeaf
 # Promp the user for confirmation to proceed
 Write-Host ""
 Write-Host ("Will create new Git Reopsitory @ " + $newGitRepo )
-Write-Warning "Do you want to proceed? (Y/H)" -WarningAction Inquire -ActionPreference
+Write-Warning "Do you want to proceed? (Y/H)" -WarningAction Inquire
 
 # Configure origin repo to accept pushes (safe - should reject if pending changes on branch being pushed to)
 git -C $originGitRepo config receive.denyCurrentBranch updateInstead
@@ -46,8 +55,10 @@ git -C $originGitRepo config receive.denyCurrentBranch updateInstead
 git -C $originGitRepo config --global mergetool.keepBackup false
 
 # Create a local git repo from another local git repo
-New-Item -Path $destination -Type Directory
-git clone --no-local --no-hardlinks $originGitRepo $newGitRepo
+# Error handeling for git clone: https://stackoverflow.com/a/59941191
+$cloneResult = git clone --no-local --no-hardlinks $originGitRepo $newGitRepo 2>&1
+if ($LASTEXITCODE -ne 0) { Throw ("git failed (exit code: $LASTEXITCODE):`n" + $result + "`n") }
+Write-Host $cloneResult
 
 # Set user and email in new repo
 git -C $newGitRepo config user.name "brandon"
