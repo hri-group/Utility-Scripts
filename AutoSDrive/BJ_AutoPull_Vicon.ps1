@@ -18,8 +18,10 @@ $shareRoot = "\\ad.monash.edu\shared\RoMI-Lab\Construction-Robots"
 
 # Locations of Git repos to update
 $gitList = @(
-    "C:\Users\hri\Documents\Brandon\CraneExp"
-    "C:\Users\hri\Documents\Brandon\Matlab-CraneSim"
+#    "C:\Users\hri\Documents\Brandon\git\CraneExp"
+#    "C:\Users\hri\Documents\Brandon\git\Matlab-CraneSim"
+    "C:\Users\hri\Documents\Brandon\git\HRI-GettingStartedNotes"
+    "C:\Users\hri\Documents\Brandon\git\Utility-Scripts"
 )
 
 ################################################################

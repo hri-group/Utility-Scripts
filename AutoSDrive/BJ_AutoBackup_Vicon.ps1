@@ -19,14 +19,20 @@ $destination = "S:\Backups\Vicon"
 
 # Locations to backup
 $sourceList = @(
-    "C:\Users\Public\Documents\Vicon\Tracker3.9",
-    "C:\Users\Public\Documents\Vicon\Tracker3.x",
+    "C:\Users\Public\Documents\Vicon\Tracker3.9"
+    "C:\Users\Public\Documents\Vicon\Tracker3.x"
     "C:\Users\hri\Documents\Brandon"
 )
 
+# Exclude git dir from backup
+$sourceExcludeDir = "C:\Users\hri\Documents\Brandon\git"
+
 # Locations of Git repos to push
 $gitList = @(
-    "C:\Users\hri\Documents\Brandon\CraneExp"
+#    "C:\Users\hri\Documents\Brandon\git\CraneExp"
+#    "C:\Users\hri\Documents\Brandon\git\Matlab-CraneSim"
+    "C:\Users\hri\Documents\Brandon\git\HRI-GettingStartedNotes"
+    "C:\Users\hri\Documents\Brandon\git\Utility-Scripts"
 )
 
 ################################################################
@@ -86,7 +92,8 @@ for ($idx = 0; $idx -lt $sourceList.count; $idx++)
     $destination2 = Join-Path $destination1 ($idx.ToString() + "_" + (Split-Path $source -Leaf))
     
     # Backup (not sure if good choice of logging switches - change as needed if errors not logging enough info)
-    robocopy $source $destination2 /mir /unilog+:$logFile /v /ns /np /nfl /ndl
+    #   /xd = exclude directory
+    robocopy $source $destination2 /mir /unilog+:$logFile /v /ns /np /nfl /ndl /xd $sourceExcludeDir
     $EC = $LastExitCode
 
     # Log the exit code of robocopy
