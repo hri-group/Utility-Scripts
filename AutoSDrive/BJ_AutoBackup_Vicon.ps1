@@ -9,8 +9,8 @@
 # Script input
 ################################
 # Output of "whoami" and "hostname", as run on computer to backup (Prevent running on wrong machine)
-$whoamiOutput = "mu00042824\hri"
-$hostnameOutPut = "mu00042824"
+$whoamiOutput = "mu00221990\hriadmin"
+$hostnameOutPut = "MU00221990"
 
 # Backup destination: root of mapping and path from mapped root to backup dir (mapped root = 'S')
 $shareUser = "monash\bdjoh3"
@@ -21,18 +21,18 @@ $destination = "S:\Backups\Vicon"
 $sourceList = @(
     "C:\Users\Public\Documents\Vicon\Tracker3.9"
     "C:\Users\Public\Documents\Vicon\Tracker3.x"
-    "C:\Users\hri\Documents\Brandon"
+    "C:\Users\HRIadmin\Documents\Brandon"
 )
 
 # Exclude git dir from backup
-$sourceExcludeDir = "C:\Users\hri\Documents\Brandon\git"
+$sourceExcludeDir = "C:\Users\HRIadmin\Documents\Brandon\git"
 
 # Locations of Git repos to push
 $gitList = @(
-#    "C:\Users\hri\Documents\Brandon\git\CraneExp"
-#    "C:\Users\hri\Documents\Brandon\git\Matlab-CraneSim"
-    "C:\Users\hri\Documents\Brandon\git\HRI-GettingStartedNotes"
-    "C:\Users\hri\Documents\Brandon\git\Utility-Scripts"
+#    "C:\Users\HRIadmin\Documents\Brandon\git\CraneExp"
+#    "C:\Users\HRIadmin\Documents\Brandon\git\Matlab-CraneSim"
+    "C:\Users\HRIadmin\Documents\Brandon\git\HRI-GettingStartedNotes"
+    "C:\Users\HRIadmin\Documents\Brandon\git\Utility-Scripts"
 )
 
 ################################################################
