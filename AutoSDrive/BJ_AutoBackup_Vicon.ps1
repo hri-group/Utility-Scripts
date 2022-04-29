@@ -115,9 +115,6 @@ for ($idx = 0; $idx -lt $gitList.count; $idx++)
     if ($EC -ne 0) { $Flag_Error_GitPush = $true }
 }
 
-# Disconnect network drive if it was not originally connected
-if(-not $Flag_SDriveConnectedAtStart) { Remove-PSDrive S }
-
 # Tell user about any errors
 if ($Flag_Error_Robocopy)
 {
@@ -131,4 +128,9 @@ if ($Flag_Error_GitPush)
 }
 
 echo "BJ: Finished" | Out-File -FilePath $logFile -Append -Encoding utf8
+
+# Disconnect network drive if it was not originally connected
+if(-not $Flag_SDriveConnectedAtStart) { Remove-PSDrive S }
+
+echo "BJ: Finished"
 
