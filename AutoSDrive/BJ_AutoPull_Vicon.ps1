@@ -9,8 +9,8 @@
 # Script input
 ################################
 # Output of "whoami" and "hostname", as run on computer to backup (Prevent running on wrong machine)
-$whoamiOutput = "mu00042824\hri"
-$hostnameOutPut = "mu00042824"
+$whoamiOutput = "mu00221990\hriadmin"
+$hostnameOutPut = "MU00221990"
 
 # Network drive
 $shareUser = "monash\bdjoh3"
@@ -18,10 +18,11 @@ $shareRoot = "\\ad.monash.edu\shared\RoMI-Lab\Construction-Robots"
 
 # Locations of Git repos to update
 $gitList = @(
-#    "C:\Users\hri\Documents\Brandon\git\CraneExp"
-#    "C:\Users\hri\Documents\Brandon\git\Matlab-CraneSim"
-    "C:\Users\hri\Documents\Brandon\git\HRI-GettingStartedNotes"
-    "C:\Users\hri\Documents\Brandon\git\Utility-Scripts"
+#    "C:\Users\HRIadmin\Documents\Brandon\git\CraneExp"
+#    "C:\Users\HRIadmin\Documents\Brandon\git\Matlab-CraneSim"
+    "C:\Users\HRIadmin\Documents\Brandon\git\HRI-GettingStartedNotes"
+    "C:\Users\HRIadmin\Documents\Brandon\git\Utility-Scripts"
+    "C:\Users\HRIadmin\Documents\Brandon\git\ViconDataStreamSDKExamples"
 )
 
 ################################################################

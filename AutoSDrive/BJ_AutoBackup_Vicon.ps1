@@ -33,6 +33,7 @@ $gitList = @(
 #    "C:\Users\HRIadmin\Documents\Brandon\git\Matlab-CraneSim"
     "C:\Users\HRIadmin\Documents\Brandon\git\HRI-GettingStartedNotes"
     "C:\Users\HRIadmin\Documents\Brandon\git\Utility-Scripts"
+    "C:\Users\HRIadmin\Documents\Brandon\git\ViconDataStreamSDKExamples"
 )
 
 ################################################################
