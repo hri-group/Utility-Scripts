@@ -7,7 +7,7 @@
 
 # If setting fail to change, manually run from the orign repo (tested - works through powershell)
 #   git config receive.denyCurrentBranch updateInstead
-#   git --global mergetool.keepBackup false
+#   git config --global mergetool.keepBackup false
 
 # Sample use:
 #   $ShareRoot="S:/RoMI-Lab/Construction-Robots"
