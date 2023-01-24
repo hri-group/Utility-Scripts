@@ -11,6 +11,10 @@
 #		Get-Disk | Where-Object -FilterScript{ $_.BusType -eq "USB" } | Format-Table -AutoSize
 #	Then identify your USB from the table and copy the FriendlyName value
 
+# To verify the copy
+#	cd to the root of the usb
+#	foreach($line in Get-Content '.\md5sum.txt') {$array=$line.Split('  '); $h=$array[0]; $p=$array[2]; Write-Host ((Get-FileHash -Path $p -Algorithm 'MD5').Hash -eq $h) ' ' $p}
+
 ######################################################
 # Script
 ###########################
