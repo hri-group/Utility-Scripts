@@ -19,9 +19,10 @@ $destination = "S:\Backups\Vicon"
 
 # Locations to backup
 $sourceList = @(
-    "C:\Users\Public\Documents\Vicon\Tracker3.9"
-    "C:\Users\Public\Documents\Vicon\Tracker3.x"
-    "C:\Users\HRIadmin\Documents\Brandon"
+    # NOTE: These folders are too big rn........ need to change it up a little
+    # "C:\Users\Public\Documents\Vicon\Tracker3.9"
+    # "C:\Users\Public\Documents\Vicon\Tracker3.x"
+    # "C:\Users\HRIadmin\Documents\Brandon"
 )
 
 # Exclude git dir from backup
